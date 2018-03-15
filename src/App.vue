@@ -4,7 +4,7 @@
     <transition name="slide" mode="out-in">
       <router-view class="page"></router-view>
     </transition>
-    <Footbar />
+    <!-- <Footbar /> -->
   </div>
 </template>
 
