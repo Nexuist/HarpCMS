@@ -21,7 +21,6 @@
 import Split from "split.js";
 import Navbar from "./components/Navbar.vue";
 import Footbar from "./components/Footbar.vue";
-require("font-awesome-webpack");
 
 export default {
   name: "app",
