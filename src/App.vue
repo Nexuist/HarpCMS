@@ -21,6 +21,7 @@
 import Split from "split.js";
 import Navbar from "./components/Navbar.vue";
 import Footbar from "./components/Footbar.vue";
+require("font-awesome-webpack");
 
 export default {
   name: "app",
@@ -58,6 +59,11 @@ export default {
   height: 100vh;
 }
 
+#editor {
+  padding: 25px;
+  overflow-y: scroll;
+}
+
 iframe {
   border: 0;
   width: 100%;
@@ -66,7 +72,6 @@ iframe {
 
 .gutter {
   background-color: #eee;
-
   background-repeat: no-repeat;
   background-position: 50%;
 }
