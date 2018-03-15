@@ -14,9 +14,13 @@ import Footbar from "./components/Footbar.vue";
 
 export default {
   name: "app",
-  components: { 
+  components: {
     Navbar,
     Footbar
   }
 };
 </script>
+
+<style lang="scss">
+@import "~bootstrap/scss/bootstrap";
+</style>
