@@ -1,0 +1,48 @@
+{
+  "name": "harp-cms",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "Andi Duro <andi@duro.me>",
+  "private": true,
+  "scripts": {
+    "test": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js -p",
+    "clean": "rm logs/*; rm -rf dist/",
+    "start": "forever start -a -l webhook.log server.js",
+    "stop": "forever stop server.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.8",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.2",
+    "flexboxgrid": "^6.3.1",
+    "jquery": "^3.3.1",
+    "normalize.css": "^7.0.0",
+    "popper.js": "^1.14.1",
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1"
+  }
+}
