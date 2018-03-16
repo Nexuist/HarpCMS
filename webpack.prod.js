@@ -11,9 +11,9 @@ module.exports = merge(common, {
               NODE_ENV: '"production"' // Why double quotes? https://github.com/thgh/vuejs-templates-rollup/issues/1#issuecomment-255096585
             }
         }),
-        new HtmlWebpackPlugin({
-            template: "src/images/favicon/favicon.ico",
-            filename: "favicon.ico"
-        })
+        // new HtmlWebpackPlugin({
+        //     template: "src/images/favicon/favicon.ico",
+        //     filename: "favicon.ico"
+        // })
     ]
 });

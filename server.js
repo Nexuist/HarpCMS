@@ -1,14 +1,10 @@
 const { spawn } = require("child_process");
 const fs = require("fs");
 const express = require("express");
-const server = express();
+const APIServer = express();
 
-// Make sure dist exists
-if (!fs.existsSync("dist")) {
-    console.log("Dist does not exist to serve from!");
-    process.exit(1); // Force quit
-}
-// Serve directly from the dist folder
-server.use(express.static("dist"));
+APIServer.listen(8080, () => console.log("Online!"));
 
-server.listen(8080, () => console.log("Online!"));
+const previewServer = express();
+previewServer.use(express.static("repo/universityhigh.github.io"));
+previewServer.listen(8081, () => console.log("Preview server online"));
