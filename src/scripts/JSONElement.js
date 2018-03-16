@@ -2,7 +2,7 @@ function find(object, path) {
 	if (typeof path === "string") {
 		path = path.match(new RegExp(/\w+/, "g"));
 	}
-	
+
 	if (path.length > 1) {
 		let e = path.shift();
 		return find(object[e] = typeof object[e] === "object" ? object[e] : {}, path);
@@ -15,7 +15,7 @@ function assign(object, path, value) {
 	if (typeof path === "string") {
 		path = path.match(new RegExp(/\w+/, "g"));
 	}
-	
+
 	if (path.length > 1) {
 		let e = path.shift();
 		assign(object[e] = typeof object[e] === "object" ? object[e] : {}, path, value);
@@ -26,9 +26,9 @@ function assign(object, path, value) {
 
 export default {
 	methods: {
-		getRootJson: function(parent) {
-			if(!parent) parent = this.$parent;
-			if(parent.rootJson === undefined) {
+		getRootJson: function (parent) {
+			if (!parent) parent = this.$parent;
+			if (parent.rootJson === undefined) {
 				return this.getRootJson(parent.$parent);
 			} else {
 				return parent.rootJson;
@@ -37,10 +37,10 @@ export default {
 	},
 	computed: {
 		relativeJson: {
-			get: function() {
+			get: function () {
 				return find(this.getRootJson(), this.path);
 			},
-			set: function(value) {
+			set: function (value) {
 				assign(this.getRootJson(), this.path, value);
 			}
 		}
