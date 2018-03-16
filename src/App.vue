@@ -5,7 +5,7 @@
 			<div class="flex">
 				<div id="editor">
 					<transition name="slide" mode="out-in">
-					<router-view></router-view>
+						<router-view></router-view>
 					</transition>
 				</div>
 				<div id="preview">
@@ -31,12 +31,12 @@ export default {
 	mounted: () => {
 		Split(["#editor", "#preview"], {
 			sizes: [50, 50],
-			elementStyle: function(dimension, size, gutterSize) {
+			elementStyle: function (dimension, size, gutterSize) {
 				return {
 					"flex-basis": "calc(" + size + "% - " + gutterSize + "px)"
 				};
 			},
-			gutterStyle: function(dimension, gutterSize) {
+			gutterStyle: function (dimension, gutterSize) {
 				return {
 					"flex-basis": gutterSize + "px"
 				};
@@ -51,6 +51,16 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 @import "~bootstrap/scss/bootstrap";
 
+iframe {
+	border: 0;
+	width: 100%;
+	height: 100%;
+}
+
+label {
+	font-weight: bold;
+}
+
 .container-fluid {
 	padding: 0;
 }
@@ -61,14 +71,8 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 #editor {
-	padding: 25px;
 	overflow-y: scroll;
-}
-
-iframe {
-	border: 0;
-	width: 100%;
-	height: 100%;
+	padding: 25px;
 }
 
 .gutter {
@@ -82,10 +86,6 @@ iframe {
 }
 
 .gutter.gutter-horizontal {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
-}
-
-label {
-  font-weight: bold;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
 }
 </style>
