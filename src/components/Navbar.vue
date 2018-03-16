@@ -15,9 +15,18 @@
 				</li>
 			</ul>
 		</div>
+		<button class="btn btn-success" v-on:click="emit('saveAndPreview')">Save & Preview</button>
 	</nav>
 </template>
 
-<style scoped lang="scss">
-@import "../styles/vars";
-</style>
+<script>
+import EventBus from "../scripts/EventBus.js";
+
+export default {
+	methods: {
+		emit(msg) {
+			EventBus.$emit(msg);
+		}
+	}
+}
+</script>

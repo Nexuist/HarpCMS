@@ -5,6 +5,7 @@ const LOCATION_GLOBALS = "_harponica/_globals.json";
 /* THE PART BELOW DOESN'T NEED TO BE MODIFIED */
 
 const fs = require("fs");
+const { exec } = require("child_process");
 const express = require("express");
 const api = express();
 api.use(express.static("frontend"));
@@ -63,7 +64,20 @@ api.post("/api/:file(locals|globals)/:page", (req, res) => {
     });
 });
 
-api.get("/compile", (req, res) => {});
+api.get("/api/compile", (req, res) => {
+  exec(
+    `harponica compile _harponica/ .`,
+    {
+      cwd: `repo/${REPO_NAME}`
+    },
+    (err, stdout, stderr) => {
+      console.log(err);
+      console.log(stdout);
+      console.log(stderr);
+      res.send("Success!");
+    }
+  );
+});
 
 api.listen(8080, () => console.log("API Online"));
 const previewServer = express();
