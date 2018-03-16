@@ -16,6 +16,9 @@ import JSONElement from "../scripts/JSONElement.js";
 export default {
   mixins: [JSONElement],
   props: ["name", "path", "id", "help"],
+  created: function() {
+		this.initialColor = this.relativeJson;
+	},
   methods: {
     reset: function() {
       this.$refs["colorPicker"].value = this.initialColor;

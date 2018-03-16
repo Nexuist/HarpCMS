@@ -47,6 +47,8 @@ export default {
 </script>
 
 <style lang="scss">
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 @import "~bootstrap/scss/bootstrap";
 
 .container-fluid {
@@ -81,5 +83,9 @@ iframe {
 
 .gutter.gutter-horizontal {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+}
+
+label {
+  font-weight: bold;
 }
 </style>

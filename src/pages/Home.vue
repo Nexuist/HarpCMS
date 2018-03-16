@@ -1,13 +1,13 @@
 <template>
   <JSONForm>
-    <JSONString name="name" path="['name']"></JSONString>
+    <JSONString name="Name" path="['name']"></JSONString>
     <JSONString name="Phone Number" path="['phoneNumber']"></JSONString>
     <JSONRepeat name="Qualities" :path="['qualities']">
       <template scope="parent">
         <JSONString name="Name" :path="`['qualities'][${parent.index}]['name']`"></JSONString>
         <JSONString name="Description" :path="`['qualities'][${parent.index}]['description']`" big="true"></JSONString>
         <JSONColor name="Background Color" :path="`['qualities'][${parent.index}]['backgroundColor']`"></JSONColor>
-        <JSONString name="Glyph" :path="`['qualities'][${parent.index}]['glyph']`" help="Click <a onclick = 'openGlyphPage()'>here</a> to view more glyphs (icons)."></JSONString>
+        <JSONString name="Glyph" :path="`['qualities'][${parent.index}]['glyph']`" help="Click <a href='http://getbootstrap.com/components/#glyphicons' target='_blank'>here</a> to view more glyphs (icons)."></JSONString>
       </template>
     </JSONRepeat>
   </JSONForm>
