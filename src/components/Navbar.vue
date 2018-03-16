@@ -15,7 +15,7 @@
 				</li>
 			</ul>
 		</div>
-		<button class="btn btn-success" v-on:click="emit('saveAndPreview')">Save & Preview</button>
+		<button class="btn btn-success" v-on:click="emit('startCompiling')">Save & Preview</button>
 	</nav>
 </template>
 

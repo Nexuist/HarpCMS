@@ -16,8 +16,9 @@ import EventBus from "../scripts/EventBus.js";
 export default {
   props: ["page"],
   created: function() {
+    let api = `http://localhost:8080/api`;
     //TODO: move this to /api/locals
-    fetch(`http://localhost:8080/api/locals/${this.page}`)
+    fetch(`${api}/locals/${this.page}`)
       .then(res => res.json())
       .then(json => {
         this.rootJSON = json;
@@ -26,8 +27,23 @@ export default {
       .catch(err => {
         this.err = err.message;
       });
-    EventBus.$on("saveAndPreview", () => {
-      alert("memes");
+    EventBus.$on("startCompiling", () => {
+      fetch(`${api}/locals/${this.page}`, {
+        body: JSON.stringify(this.rootJSON),
+        method: "POST",
+        headers: {
+        'content-type': 'application/json'
+      },
+      }).then(res => {
+        return fetch(`${api}/compile`);
+      })
+      .then(res => {
+        EventBus.$emit("stopCompiling");
+      })
+      .catch(err => {
+        alert(`Couldn't save data: ${err}`);
+        EventBus.$emit("stopCompiling");
+      });
     })
   },
   data: () => {
