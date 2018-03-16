@@ -12,8 +12,8 @@ import EventBus from "../scripts/EventBus.js";
 
 export default {
   created: function() {
-    EventBus.$on("startCompiling", () => this.loading = true);
-    EventBus.$on("stopCompiling", () => {
+    EventBus.$on("previewLoading", () => this.loading = true);
+    EventBus.$on("previewReady", () => {
       this.loading = false;
       this.reloadPreview();
     }); 

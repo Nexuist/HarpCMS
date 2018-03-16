@@ -15,6 +15,7 @@
 				</li>
 			</ul>
 		</div>
+		<button class="btn btn-danger mr-2" v-on:click="emit('reset')">Reset</button>
 		<button class="btn btn-success" v-on:click="emit('startCompiling')">Save & Preview</button>
 	</nav>
 </template>

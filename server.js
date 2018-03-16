@@ -32,6 +32,20 @@ function getJSON(file, key) {
   });
 }
 
+function run(command) {
+  return new Promise((resolve, reject) => {
+    exec(
+      command,
+      {
+        cwd: `repo/${REPO_NAME}`
+      },
+      (err, stdout, stderr) => {
+        err ? reject(err) : resolve();
+      }
+    );
+  });
+}
+
 api.get("/api/:file(locals|globals)/:page?", (req, res) => {
   let file = req.params.file == "locals" ? LOCATION_LOCALS : LOCATION_GLOBALS;
   let filePath = `repo/${REPO_NAME}/${file}`;
@@ -65,18 +79,24 @@ api.post("/api/:file(locals|globals)/:page", (req, res) => {
 });
 
 api.get("/api/compile", (req, res) => {
-  exec(
-    `harponica compile _harponica/ .`,
-    {
-      cwd: `repo/${REPO_NAME}`
-    },
-    (err, stdout, stderr) => {
-      console.log(err);
-      console.log(stdout);
-      console.log(stderr);
-      res.send("Success!");
-    }
-  );
+  run("harponica compile _harponica/ .")
+  .then(result => {
+    res.send("Success!");
+  })
+  .catch(err => {
+    res.status(500);
+    res.send(err);
+  });
+});
+
+api.get("/api/reset", (req, res) => {
+  run("git reset --hard").then(result => {
+    res.send("Success!");
+  })
+  .catch(err => {
+    res.status(500);
+    res.send(err);
+  });
 });
 
 api.listen(8080, () => console.log("API Online"));

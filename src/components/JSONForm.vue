@@ -28,23 +28,43 @@ export default {
         this.err = err.message;
       });
     EventBus.$on("startCompiling", () => {
+      EventBus.$emit("previewLoading");
       fetch(`${api}/locals/${this.page}`, {
         body: JSON.stringify(this.rootJSON),
         method: "POST",
         headers: {
-        'content-type': 'application/json'
-      },
-      }).then(res => {
-        return fetch(`${api}/compile`);
+          "content-type": "application/json"
+        }
       })
-      .then(res => {
-        EventBus.$emit("stopCompiling");
-      })
-      .catch(err => {
-        alert(`Couldn't save data: ${err}`);
-        EventBus.$emit("stopCompiling");
-      });
-    })
+        .then(res => {
+          return fetch(`${api}/compile`);
+        })
+        .then(res => {
+          EventBus.$emit("previewReady");
+        })
+        .catch(err => {
+          alert(`Couldn't save data: ${err}`);
+          EventBus.$emit("previewReady");
+        });
+    });
+    EventBus.$on("reset", () => {
+      let confirmReset = confirm(
+        "Are you sure you want to reset? Every change that hasn't been pushed yet will be lost."
+      );
+      if (!confirmReset) return;
+      EventBus.$emit("previewLoading");
+      fetch(`${api}/reset`)
+        .then(res => {
+          return fetch(`${api}/compile`);
+        })
+        .then(res => {
+          window.location.reload(); // Reload the iframe and the JSONForm
+        })
+        .catch(err => {
+          alert(`Couldn't reset: ${err}`);
+          EventBus.$emit("previewReady");
+        });
+    });
   },
   data: () => {
     return {
