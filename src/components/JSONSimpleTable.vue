@@ -1,11 +1,9 @@
 <template>
 	<div :id="id">
 		<label :for="id">{{name}}</label>
-		
 		<p v-if="help" class="help-block" v-html="help"></p>
-		
 		<div class="scroll-area">
-			<table class="table table-striped table-hover table-condensed table-responsive" :id="id">
+			<table class="table table-striped table-hover table-condensed" :id="id">
 				<thead>
 					<tr>
 						<th>{{ column }}</th>
@@ -35,34 +33,37 @@
 </template>
 
 <style scoped lang="scss">
-.scroll-area {
-	overflow: auto;
-	max-height: 30vh;
-}
+// .scroll-area {
+//   overflow: auto;
+//   max-height: 30vh;
+// }
 </style>
 
 <script>
 import JSONElement from "../scripts/JSONElement.js";
 export default {
-	mixins: [JSONElement],
-	props: ["name", "path", "id", "help"],
-	methods: {
-		addRow: function () {
-			this.relativeJSON.push("");
-		},
-		removeRow: function (index) {
-			dialog.showMessageBox({
-				type: "warning",
-				buttons: ["Continue", "Cancel"],
-				title: "Confirm Action",
-				message: "Are you sure?"
-			}, response => {
-				if (!response) this.relativeJSON.splice(index, 1)
-			});
-		},
-		modifyIndex: function (index) {
-			this.relativeJSON[index] = event.target.value;
-		}
-	}
+  mixins: [JSONElement],
+  props: ["name", "path", "id", "help"],
+  methods: {
+    addRow: function() {
+      this.relativeJSON.push("");
+    },
+    removeRow: function(index) {
+      dialog.showMessageBox(
+        {
+          type: "warning",
+          buttons: ["Continue", "Cancel"],
+          title: "Confirm Action",
+          message: "Are you sure?"
+        },
+        response => {
+          if (!response) this.relativeJSON.splice(index, 1);
+        }
+      );
+    },
+    modifyIndex: function(index) {
+      this.relativeJSON[index] = event.target.value;
+    }
+  }
 };
 </script>
