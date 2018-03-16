@@ -13,12 +13,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(item, index) in relativeJson" :key="index">
+					<tr v-for="(item, index) in relativeJSON" :key="index">
 						<td>
 							<input type="text" class="form-control" :value="item" :maxlength="maxlength" v-on:input="modifyIndex(index)">
 						</td>
 						<td>
-							<button v-if="relativeJson.length > 1" type="button" v-on:click="removeRow(index)" class="btn btn-small btn-danger">
+							<button v-if="relativeJSON.length > 1" type="button" v-on:click="removeRow(index)" class="btn btn-small btn-danger">
 								<i class="fa fa-minus-circle"></i>
 							</button>
 						</td>
@@ -48,7 +48,7 @@ export default {
 	props: ["name", "path", "id", "help"],
 	methods: {
 		addRow: function () {
-			this.relativeJson.push("");
+			this.relativeJSON.push("");
 		},
 		removeRow: function (index) {
 			dialog.showMessageBox({
@@ -57,11 +57,11 @@ export default {
 				title: "Confirm Action",
 				message: "Are you sure?"
 			}, response => {
-				if (!response) this.relativeJson.splice(index, 1)
+				if (!response) this.relativeJSON.splice(index, 1)
 			});
 		},
 		modifyIndex: function (index) {
-			this.relativeJson[index] = event.target.value;
+			this.relativeJSON[index] = event.target.value;
 		}
 	}
 };

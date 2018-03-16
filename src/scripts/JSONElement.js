@@ -26,22 +26,22 @@ function assign(object, path, value) {
 
 export default {
 	methods: {
-		getRootJson: function (parent) {
+		getRootJSON: function (parent) {
 			if (!parent) parent = this.$parent;
-			if (parent.rootJson === undefined) {
-				return this.getRootJson(parent.$parent);
+			if (parent.rootJSON === undefined) {
+				return this.getRootJSON(parent.$parent);
 			} else {
-				return parent.rootJson;
+				return parent.rootJSON;
 			}
 		}
 	},
 	computed: {
-		relativeJson: {
+		relativeJSON: {
 			get: function () {
-				return find(this.getRootJson(), this.path);
+				return find(this.getRootJSON(), this.path);
 			},
 			set: function (value) {
-				assign(this.getRootJson(), this.path, value);
+				assign(this.getRootJSON(), this.path, value);
 			}
 		}
 	}

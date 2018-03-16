@@ -1,5 +1,5 @@
 <template>
-	<JSONForm>
+	<JSONForm page="index">
 		<JSONString name="Name" path="['name']"></JSONString>
 		<JSONString name="Phone Number" path="['phoneNumber']"></JSONString>
 		<JSONRepeat name="Qualities" :path="['qualities']">
@@ -9,10 +9,8 @@
 				<JSONColor name="Background Color" :path="`['qualities'][${parent.index}]['backgroundColor']`"></JSONColor>
 				<JSONString name="Glyph" :path="`['qualities'][${parent.index}]['glyph']`" help="Click <a href='http://getbootstrap.com/components/#glyphicons' target='_blank'>here</a> to view more glyphs (icons)."></JSONString>
 			</template>
-		</JSONRepeat>
-		
+		</JSONRepeat>	
 		<br />
-		
 		<JSONRepeat name="Gallery" :path="['gallery']">
 			<template slot-scope="parent">
 				<JSONString name="External Link" :path="`['gallery'][${parent.index}]['link']`" help="This is the page that is opened when the image is clicked."></JSONString>

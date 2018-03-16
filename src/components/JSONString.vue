@@ -1,8 +1,8 @@
 <template>
 	<div class="form-group">
 		<label :for="id">{{name}}</label>
-		<textarea v-if="big" class="form-control" v-model="relativeJson"></textarea>
-		<input v-else type="text" class="form-control" :id="id" v-model="relativeJson">
+		<textarea v-if="big" class="form-control" v-model="relativeJSON"></textarea>
+		<input v-else type="text" class="form-control" :id="id" v-model="relativeJSON">
 		<p v-if="help" class="help-block" v-html="help"></p>
 	</div>
 </template>

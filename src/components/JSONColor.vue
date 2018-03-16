@@ -2,7 +2,7 @@
 	<div class="form-group">
 		<label :for="id">{{name}}</label>
 		<br>
-		<input type="color" :id="id" v-model="relativeJson" ref="colorPicker" :defaultValue="initialColor">
+		<input type="color" :id="id" v-model="relativeJSON" ref="colorPicker" :defaultValue="initialColor">
 		<button type="button" v-on:click="reset" class="btn btn-default btn-small">
 			<i class="fa fa-undo"></i>
 		</button>
@@ -17,7 +17,7 @@ export default {
 	mixins: [JSONElement],
 	props: ["name", "path", "id", "help"],
 	created: function() {
-		this.initialColor = this.relativeJson;
+		this.initialColor = this.relativeJSON;
 	},
 	methods: {
 		reset: function() {
