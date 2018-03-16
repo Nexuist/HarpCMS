@@ -30,7 +30,7 @@ export default {
   },
   mounted: () => {
     Split(["#editor", "#preview"], {
-      sizes: [25, 75],
+      sizes: [50, 50],
       elementStyle: function(dimension, size, gutterSize) {
         return {
           "flex-basis": "calc(" + size + "% - " + gutterSize + "px)"

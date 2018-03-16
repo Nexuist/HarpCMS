@@ -1,5 +1,5 @@
 <template>
-  <div :id="id">
+  <div :id="id" class="mt-1">
     <label :for="id">{{name}}</label>
     <p v-if="help" class="help-block" v-html="help"></p>
     <div class="card mb-4" v-for="(item, index) in relativeJson" :key="index">
@@ -30,21 +30,8 @@ export default {
       );
     },
     removeRow: function(index) {
-      let self = this;
-      //TODO: dialog!!
-      //   dialog.showMessageBox(
-      //     {
-      //       type: "warning",
-      //       buttons: ["Continue", "Cancel"],
-      //       title: "Confirm Action",
-      //       message: "Are you sure?"
-      //     },
-      //     response => {
-      //       if (!response) {
-      //         self.relativeJson.splice(index, 1);
-      //       }
-      //     }
-      //   );
+      var deleteConfirmed = confirm("Are you sure you want to delete this item?");
+      if (deleteConfirmed) this.relativeJson.splice(index, 1);
     }
   }
 };
