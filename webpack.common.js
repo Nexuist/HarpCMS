@@ -1,7 +1,7 @@
 const path = require("path"),
-CleanWebpackPlugin = require("clean-webpack-plugin"),
-ExtractTextPlugin = require("extract-text-webpack-plugin"),
-HtmlWebpackPlugin = require("html-webpack-plugin");
+	CleanWebpackPlugin = require("clean-webpack-plugin"),
+	ExtractTextPlugin = require("extract-text-webpack-plugin"),
+	HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const extractConfig = ExtractTextPlugin.extract({
 	use: [
@@ -29,7 +29,7 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-		  vue: 'vue/dist/vue.js'
+			vue: "vue/dist/vue.js"
 		}
 	},
 	module: {
