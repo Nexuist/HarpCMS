@@ -4,26 +4,55 @@ const LOCATION_GLOBALS = "_harponica/_globals.json";
 
 /* THE PART BELOW DOESN'T NEED TO BE MODIFIED */
 
-
-const { spawn } = require("child_process");
 const fs = require("fs");
 const express = require("express");
 const api = express();
 api.use(express.static("frontend"));
+api.use(express.json());
 
-api.get("/api/:file(locals|globals)/:page?", (req, res, next) => {
-    let filePath = req.params.file == "locals" ? LOCATION_LOCALS : LOCATION_GLOBALS;
-    fs.readFile(`repo/${REPO_NAME}/${filePath}`, (err, data) => {
-        res.setHeader("Content-Type", "application/json");
-        try {
-            let json = JSON.parse(data);
-            res.send(req.params.page ? json[req.params.page] : json);
-        }
-        catch (err) {
-            res.status(500);
-            res.send(`Couldn't complete request: ${err}`);
-        }
+function getJSON(file, key) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, (err, data) => {
+            try {
+                let json = JSON.parse(data);
+                resolve(key ? json[key] : json);
+            }
+            catch (err) {
+                reject(err);
+            }
+        });
     });
+}
+
+api.get("/api/:file(locals|globals)/:page?", (req, res) => {
+    let file = req.params.file == "locals" ? LOCATION_LOCALS : LOCATION_GLOBALS;
+    let filePath = `repo/${REPO_NAME}/${file}`;
+    getJSON(filePath, req.params.page).then((json) => {
+        res.send(json);
+    })
+    .catch((err) => {
+        res.status(500);
+        res.send(`Couldn't complete request: ${err}`);
+    });
+});
+
+api.post("/api/:file(locals|globals)/:page", (req, res) => {
+    let file = req.params.file == "locals" ? LOCATION_LOCALS : LOCATION_GLOBALS;
+    let filePath = `repo/${REPO_NAME}/${file}`;
+    getJSON(filePath, null).then((json) => {
+        // It's technically possible to insert new keys into the file using this method, but that's a feature, not a bug :)
+        json[req.params.page] = req.body;
+        fs.writeFile(filePath, JSON.stringify(json, null, 2), (err) => {
+            if(!err) return res.send("Success!");
+            res.status(500);
+            res.send(`Unable to save changes: ${err}`);
+        });
+    })
+    .catch((err) => {
+        res.status(500);
+        res.send(`Couldn't complete request: ${err}`);
+    });
+
 });
 
 
