@@ -13,14 +13,12 @@
 				</div>
 			</div>
 		</div>
-		<!-- <Footbar /> -->
 	</div>
 </template>
 
 <script>
 import Split from "split.js";
 import Navbar from "./components/Navbar.vue";
-import Footbar from "./components/Footbar.vue";
 
 export default {
 	name: "app",
