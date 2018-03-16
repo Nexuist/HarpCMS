@@ -18,7 +18,7 @@ module.exports = {
 		main: "./src/scripts/main.js"
 	},
 	output: {
-		path: path.resolve(__dirname, "dist"),
+		path: path.resolve(__dirname, "frontend"),
 		filename: "scripts/[name].bundle.js"
 	},
 	resolve: {
@@ -88,7 +88,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CleanWebpackPlugin("dist"),
+		new CleanWebpackPlugin("frontend"),
 		new HtmlWebpackPlugin({
 			template: "src/index.html",
 			filename: "index.html"
