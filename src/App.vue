@@ -57,7 +57,7 @@ $fa-font-path: "~font-awesome/fonts";
 
 .flex {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 40px);
 }
 
 #editor {
