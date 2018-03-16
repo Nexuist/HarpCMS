@@ -5,15 +5,9 @@ const path = require("path"),
 
 const extractConfig = ExtractTextPlugin.extract({
 	use: [
-		{
-			loader: "css-loader"
-		},
-		{
-			loader: "postcss-loader"
-		},
-		{
-			loader: "sass-loader"
-		}
+		"css-loader",
+		"postcss-loader",
+		"sass-loader"
 	],
 	fallback: "style-loader",
 	publicPath: "../"
