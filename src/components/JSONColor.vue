@@ -22,6 +22,7 @@ export default {
 	methods: {
 		reset: function() {
 			this.$refs["colorPicker"].value = this.initialColor;
+			this.relativeJSON = this.initialColor;
 		}
 	},
 	data: function() {
